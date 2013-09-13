@@ -1,27 +1,44 @@
-var retry   = require('retry')           // tim-kos/node-retry
-  , maxload = require('maxmind-loader')  // angleman/maxmind-loader
+var maxload = require('maxmind-loader')  // angleman/maxmind-loader
 
 ;
 
+/*
+pause  factor  retry 2    3         4          5           6        7        8   9    10   11       12        13        14
+5s     2       5s,   10s, 20s,      40s,       80s~1m,     160s=2m, 320s=4m, 8m, 16m, 32m, 64m=~1h, 128m=~2h, 256m=~4h, 512m=~8h
+5s     5       5s,   25s, 125s=~2m, 625s=~10m, 3125s=~52m
+*/
 
 function reloader(options, cb) {
-	options            = options || {};
-	options.dest       = options.dest || '/tmp/';
-	options.maxTimeout = 15 * 60 * 1000, // 15 minutes
-	options.retries    = 5;
-	var operation      = retry.operation(options);
+	options             = options            || {};
+	options.dest        = options.dest       || '/tmp/';
+	options.pause       = options.pause      || 5 * 1000; //  5 second
+	options.factor      = options.factor     || 5;
+	options.retries     = options.retries    || 5;
+	options.timer       = null;
 
-	operation.attempt(function(currentAttempt) {
-		if (currentAttempt > 1) {
-			console.log('maxmind-reloader retry ', currentAttempt-1, ' for ', options);
+	function attempt_load(options, cb, attempt) {
+		if (options.timer) {
+			clearTimeout(options.timer);
 		}
-		maxload(options, function(err, data) {
-			if (operation.retry(err)) {
-				return;
+		attempt++;
+		if (attempt > (options.retries+1)) {
+			cb(new Error('maxmind-reload: failed after' + options.retries + 'attempts'));
+		} else {
+			if (!options.silent) {
+				console.log('maxmind-reload: attempt', attempt, 'at', new Date());
 			}
-			cb(err ? operation.mainError() : null, data);
-		});
-	});
+			maxload(options, function(err, data) {
+				if (err) {
+					console.log(err);
+					setTimeout(attempt_load, options.pause, options, cb, attempt);
+				} else {
+					cb(null, data);
+				}
+			});
+		}
+	}
+
+	attempt_load(options, cb, 0);
 }
 
 
