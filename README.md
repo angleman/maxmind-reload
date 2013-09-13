@@ -27,6 +27,7 @@ maxloader({
     license: undefined,     // maxmind license string for paid data otherwise free version loaded
     retries:    5,
     maxTimeout: 15*60*1000, // 15 minutes
+    silent:  false,         // true = don't console.log attempts
     dest:    '/tmp/'        // default load free /tmp/GeoCityLite.dat
 }, function (err, filepath) {
     maxmind.init(filepath);
