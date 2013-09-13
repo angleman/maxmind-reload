@@ -2,7 +2,6 @@
 
 Get maxmind paid and lite geoip data updates with exponential and custom retry strategies
 
-
 ## Install
 
 ```
@@ -11,10 +10,44 @@ npm install maxmind-reload
 
 ## Usage
 
-```
-var maxmind_reload = require('maxmind-reload');
+[maxmind-loader](https://github.com/angleman/maxmind-loader) compatible but with tenacity
+
+```javascript
+maxloader = require('maxmind-reload')
+maxloader(function(err, filepath) { maxmind.init(filepath) }); // free geo data
 ```
 
+## Example with defaults
+
+```javascript
+maxmind   = require('maxmind')
+maxloader = require('maxmind-reload')
+
+maxloader({
+    license: undefined,     // maxmind license string for paid data otherwise free version loaded
+    retries:    5,
+    maxTimeout: 15*60*1000, // 15 minutes
+    dest:    '/tmp/'        // default load free /tmp/GeoCityLite.dat
+}, function (err, filepath) {
+    maxmind.init(filepath);
+});
+```
+
+## Paid Geo Data Example
+
+```javascript
+var options = { license: 'MAXMIND_LICENSE' };
+
+maxloader(options, function(err, filepath) {
+    if (err) {
+        console.log(err);
+    } else {
+        maxmind.init(filepath, { memoryCache: true });
+    }
+})
+```
+
+For additional parameter details see: [maxmind-loader](https://github.com/angleman/maxmind-loader) and [reply](https://github.com/tim-kos/node-retry)
 
 ## License: MIT
 
