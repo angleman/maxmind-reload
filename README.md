@@ -24,7 +24,7 @@ maxmind   = require('maxmind')
 maxloader = require('maxmind-reload')
 
 maxloader({
-    license: undefined,  // maxmind license string for paid data otherwise free version loaded
+    license: undefined,  // 'maxmind license' for paid data otherwise free version used
     retries: 5,
     pause:   5 * 1000,   // 5 seconds
     silent:  false,      // true = don't console.log attempts
@@ -62,5 +62,19 @@ For additional parameter details see: [maxmind-loader](https://github.com/anglem
 
 ## License: MIT
 
+<!--- :angleman@license-md/begin -->
 Dependencies:
 
+[![maxmind-loader](http://badgr.co/maxmind-loader/MIT.png?bg=%23339e00 "maxmind-loader@0.5.9 Massachusetts Institute of Technology")](https://github.com/angleman/maxmind-loader)
+[![retry](http://badgr.co/retry/MIT*.png?bg=%23339e00 "retry@0.6.0 Massachusetts Institute of Technology (text scan guess)")](https://github.com/felixge/node-retry)
+
+
+Development Dependencies:
+
+[![grunt](http://badgr.co/grunt/MIT.png?bg=%23339e00 "grunt@0.4.1 Massachusetts Institute of Technology")](https://github.com/gruntjs/grunt)
+[![grunt-bump](http://badgr.co/grunt-bump/Unknown.png "grunt-bump@0.0.11 Unknown License")](https://github.com/vojtajina/grunt-bump)
+[![license-md](http://badgr.co/license-md/MIT.png?bg=%23339e00 "license-md@0.3.6 Massachusetts Institute of Technology")](https://github.com/angleman/license-md)
+[![mocha](http://badgr.co/mocha/Unknown.png "mocha@1.12.1 Unknown License")](https://github.com/visionmedia/mocha)
+[![should](http://badgr.co/should/MIT*.png?bg=%23339e00 "should@1.2.2 Massachusetts Institute of Technology (text scan guess)")](https://github.com/visionmedia/should.js)
+
+<!--- :angleman@license-md/end -->
