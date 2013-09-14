@@ -14,6 +14,10 @@ function reloader(options, cb) {
 	options.pause       = options.pause      || 5 * 1000; //  5 second
 	options.factor      = options.factor     || 5;
 	options.retries     = options.retries    || 5;
+	if (typeof options.random == 'undefined') {
+		options.random  = 10; // percentage
+	}
+	options.random      = options.random / 100; // make a percentage
 	options.timer       = null;
 
 	function attempt_load(options, cb, attempt) {
@@ -29,8 +33,13 @@ function reloader(options, cb) {
 			}
 			maxload(options, function(err, data) {
 				if (err) {
-					console.log(err);
-					setTimeout(attempt_load, options.pause, options, cb, attempt);
+					var duration = options.pause + Math.floor(options.pause * Math.random() * options.random);
+					if (!options.silent) {
+						console.log(err);
+						console.log('retry in', duration + 'ms')
+					}
+					options.timer = setTimeout(attempt_load, duration, options, cb, attempt);
+					options.pause = Math.floor(options.pause * options.factor);
 				} else {
 					cb(null, data);
 				}
