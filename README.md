@@ -65,8 +65,7 @@ For additional parameter details see: [maxmind-loader](https://github.com/anglem
 <!--- :angleman@license-md/begin -->
 Dependencies:
 
-[![maxmind-loader](http://badgr.co/maxmind-loader/MIT.png?bg=%23339e00 "maxmind-loader@0.5.9 Massachusetts Institute of Technology")](https://github.com/angleman/maxmind-loader)
-[![retry](http://badgr.co/retry/MIT*.png?bg=%23339e00 "retry@0.6.0 Massachusetts Institute of Technology (text scan guess)")](https://github.com/felixge/node-retry)
+[![maxmind-loader](http://badgr.co/maxmind-loader/MIT.png?bg=%23339e00 "maxmind-loader@0.5.10 Massachusetts Institute of Technology")](https://github.com/angleman/maxmind-loader)
 
 
 Development Dependencies:
