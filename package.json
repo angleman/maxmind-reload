@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "retry": "~0.6.0",
-    "maxmind-loader": "~0.5.8"
+    "maxmind-loader": "~0.5.9"
   },
   "devDependencies": {
     "license-md": "~0.2.5",
