@@ -58,7 +58,7 @@ maxloader(options, function(err, filepath) {
 })
 ```
 
-For additional parameter details see: [maxmind-loader](https://github.com/angleman/maxmind-loader) and [reply](https://github.com/tim-kos/node-retry)
+For additional parameter details see: [maxmind-loader](https://github.com/angleman/maxmind-loader)
 
 ## License: MIT
 
