@@ -1,6 +1,6 @@
 {
   "name": "maxmind-reload",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Get maxmind paid and lite geoip data updates with exponential and custom retry2 strategies",
   "main": "index.js",
   "scripts": {
