@@ -21,7 +21,7 @@
     "node": ">=0.8.0"
   },
   "dependencies": {
-    "maxmind-loader": "~0.5.11"
+    "maxmind-loader": "~0.5.12"
   },
   "devDependencies": {
     "license-md": "~0.3.6",
