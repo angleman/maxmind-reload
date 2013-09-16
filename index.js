@@ -36,7 +36,7 @@ function reloader(options, cb) {
 					var duration = options.pause + Math.floor(options.pause * Math.random() * options.random);
 					if (!options.silent) {
 						console.log(err);
-						console.log('retry in', duration + 'ms')
+						console.log('maxmind-reload: retry in', duration + 'ms')
 					}
 					options.timer = setTimeout(attempt_load, duration, options, cb, attempt);
 					options.pause = Math.floor(options.pause * options.factor);
